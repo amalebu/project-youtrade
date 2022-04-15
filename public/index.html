@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="website personal, website ama lebu, amalebu, crisantusleburaya, crisantus lebu raya, lebu raya">
+    <meta name="description" content="youtrade, trade, saham, pengelolaan, keuangan, yuliesekuritas, yulie, yulie sekuritas, sekuritas, bursa, bursa efek Indonesia ">
     <link rel="stylesheet" href="./css/app.css">
+
     <title>You Trade | Yulie Sekuritas Indonesia</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
@@ -406,54 +407,7 @@
         <button @click="openStore()" class="bg-red-700 px-4 py-3  rounded-lg" target="_blank" rel="noopener noreferrer">Download</button>
     </div>
 
-    <script>
-        const setup = () => {
-            return {
-                isOpen: true,
-                isMobileLayout: false,
-                showNavBg: false,
-                isMobile: null,
-                linkShow: false,
-                tempLink: null,
-                setBg() {
-                    if (!this.isMobileLayout) {
-                        this.showNavBg = (window.pageYOffset > 20) ? true : false;
-                    } else {
-                        this.showNavBg = true;
-                        if (window.pageYOffset > 50) {
-                            this.isMobile = null;
-                        } else {
-                            this.isMobile = this.tempLink;
-                        }
-                    }
-                },
-                checkScreen() {
-                    if (/android/i.test(navigator.userAgent)) {
-                        this.isMobile = "https://play.google.com/store/apps/details?id=rb.android.unotrade";
-                        this.tempLink = "https://play.google.com/store/apps/details?id=rb.android.unotrade";
-                    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-                        this.isMobile = "https://apps.apple.com/id/app/unotrade/id1517185419";
-                        this.tempLink = "https://apps.apple.com/id/app/unotrade/id1517185419";
-                    }
-                },
-                watchScreen() {
-                    if (window.innerWidth <= 768) {
-                        this.isOpen = false
-                        this.isMobileLayout = true
-                        this.showNavBg = true
-                        this.checkScreen();
-                    } else {
-                        this.isOpen = true
-                        this.isMobileLayout = false
-                    }
-
-                },
-                openStore() {
-                    window.open(this.isMobile, '_blank').focus();
-                }
-            }
-        }
-    </script>
+    <script src="./js/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();

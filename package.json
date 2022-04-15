@@ -1,0 +1,19 @@
+{
+    "name": "testes",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "watch": "npx tailwindcss -i ./src/css/style.css -o ./public/css/app.css --watch",
+        "dev": "npx tailwindcss -i ./src/css/style.css -o ./public/css/app.css"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "tailwindcss": "^3.0.18",
+        "tailwindcss-debug-screens": "^2.2.1"
+    },
+    "dependencies": {
+        "aos": "^3.0.0-beta.6"
+    }
+}

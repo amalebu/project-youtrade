@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="website personal, website ama lebu, amalebu, crisantusleburaya, crisantus lebu raya, lebu raya">
+    <link rel="stylesheet" href="./css/app.css">
+    <title>You Trade | Yulie Sekuritas Indonesia</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+</head>
+
+<body class="antialiased select-none scroll-smooth debug-screens overflow-x-hidden w-screen bg-white" x-data="setup()" @load.window="watchScreen()" @resize.window="watchScreen()">
+    <!-- navbar -->
+    <div class="fixed z-50 w-full" @scroll.window="setBg()" :class="{ 'bg-white shadow transition duration-100' : showNavBg }">
+        <div class="flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 max-w-screen-xl">
+            <div :class="{ 'py-6' : showNavBg, 'py-10' : !showNavBg}" class="px-4 flex flex-row items-center justify-between transition-all duration-300">
+                <a href="# " class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline "><img src="img/youtrade.png" alt="Logo YOUTRADE" class="h-10"></a>
+                <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline " @click="isOpen=! isOpen ">
+      <svg fill="currentColor " viewBox="0 0 20 20 " class="w-6 h-6 ">
+        <path x-show="!isOpen" fill-rule="evenodd " d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z " clip-rule="evenodd "></path>
+        <path x-show="isOpen" fill-rule="evenodd " d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z
+    " clip-rule="evenodd "></path>
+      </svg>
+      </button>
+            </div>
+            <nav x-ref="menu" x-bind:style="isOpen && isMobileLayout ? 'max-height: ' + $refs.menu.scrollHeight + 'px' : '' " :class="{'max-h-0 overflow-hidden': isMobileLayout,'mb-10' : isOpen & isMobileLayout }" class="relative transition-all  duration-500 flex-col flex-grow md:pb-0 md:justify-end md:flex-row flex">
+                <a class="px-4 py-2 mt-2 font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200
+    md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline " href="# ">Beranda</a>
+                <a class="px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
+    md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline " href="# ">Tanya</a>
+                <a class="px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
+    md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline " href="# ">Hubungi Kami</a>
+
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+        <span>Id</span>
+        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-md md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <a class="block px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Indonesia</a>
+                            <a class="block px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">English</a>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <section id="hero" class=" pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
+
+
+        <div class="flex flex-col w-full justify-center sm:pl-4 items-start md:items-center text-center my-0 md:my-10 lg:text-left mb-0">
+            <div class="w-full">
+                <h1 data-aos="fade-right" class="my-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-700">
+                    Sekarang Siapa Saja Bisa <span class="text-red-900">Berinvestasi</span>
+                </h1>
+                <p data-aos="fade-down" data-aos-delay="300" class="leading-tight tracking-tighter text-lg md:text-xl mb-6 md:mb-12 ">Dapatkan uang tambahan, di saat kamu rebahan.</p>
+            </div>
+            <div class="w-full mt-4">
+                <div x-show="tempLink == null" class="flex w-full justify-center lg:justify-start mb-0 fade-in gap-4" data-aos="fade-up" data-aos-delay="700">
+                    <img src="img/App Store.svg" class="h-10 sm:h-12" alt="Doanload App Store">
+                    <img src="img/Play Store.svg" class="h-10 sm:h-12" alt="Doanload Play Store">
+                </div>
+
+                <div class="flex w-full justify-center lg:justify-start fade-in gap-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <img src="img/logo_BEI.png" class="h-24 sm:h-32" alt="Indonesia Stock Exchange">
+                    <img src="img/logo_OJK.png" class="h-24 sm:h-32" alt="Otoritas Jasa Keuangan">
+                </div>
+            </div>
+        </div>
+
+        <div class=" w-full relative flex items-center my-10 mr-0">
+
+            <img data-aos="fade-up" class="w-full mx-auto" src="img/back-element.svg" alt='back-element' />
+            <div class="flex justify-center absolute top-6 h-full w-full">
+                <img data-aos="fade-up" class="h-full" src="img/device.svg" alt="front-element" />
+            </div>
+
+            <div data-aos="fade-down" data-aos-delay="500" class="
+                absolute 
+                top-14 left-2 w-[20%]
+                sm:top-20 sm:left-8 
+                md:top-26 md:left-18 
+                lg:left-2 lg:top-24
+                floating-4">
+                <img class="w-full" src="img/grafik.svg" alt="grafik">
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="600" class="
+                absolute 
+                top-32 right-2 w-[20%]
+                sm:right-8 sm:top-52 
+                md:top-60 md:right-8 
+                lg:top-52 lg:right-6 
+                floating">
+                <img class="w-full" src="img/money.svg" alt="uang">
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="700" class="
+                absolute 
+                bottom-14 left-6 w-[20%]
+                sm:left-6 sm:bottom-20
+                md:left-8 md:bottom-20
+                lg:bottom-20 lg:left-4 
+                floating">
+                <img class="w-full" src="img/grafik2.svg" alt="grafik">
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:px-8 mx-auto ">
+
+        <h1 class="w-full flex justify-center mt-8 mb-20 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-700" data-aos="fade-up">
+            Keunggulan YOU TRADE
+        </h1>
+
+        <div class="grid gap-6 md:grid-cols-2 grid-cols-1 px-4">
+            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust mudah.svg"></div>
+                <div class="gap-2 text-center lg:text-left ">
+                    <div class="font-bold text-md md:text-lg">Mudah</div>
+                    <p class="text-sm md:text-base">Desain aplikasi memudahkan kamu untuk memahami produk investasi.</p>
+                </div>
+            </div>
+            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust wallet.svg"></div>
+                <div class="gap-2 text-center lg:text-left ">
+                    <div class="font-bold text-md md:text-lg">Murah</div>
+                    <p class="text-sm md:text-base">Mulai dari 10 ribu rupiah, kamu sudah bisa memiliki saham.</p>
+                </div>
+            </div>
+            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust notes.svg"></div>
+                <div class="gap-2 text-center lg:text-left ">
+                    <div class="font-bold text-md md:text-lg">Aman</div>
+                    <p class="text-sm md:text-base">Data pribadi dan danamu tersimpan dengan aman dan terproteksi.</p>
+                </div>
+            </div>
+            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust comfort.svg"></div>
+                <div class="gap-2 text-center lg:text-left ">
+                    <div class="font-bold text-md md:text-lg">Nyaman</div>
+                    <p class="text-sm md:text-base">Aplikasi dalam genggaman yang bisa kamu akses 24 jam.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto mb-14 relative" data-aos="fade-up">
+
+        <div class="bg-red-200/20 rounded-xl p-6 w-full mx-auto lg:h-128 flex flex-col justify-center">
+            <h1 data-aos="fade-up" class="w-full flex justify-center mt-12 mb-16 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-700" data-aos="fade-up">
+                Biaya Komisi
+            </h1>
+            <div class="flex items-center justify-around md:justify-evenly flex-row font-Lora text-4xl lg:text-5xl">
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-red-900 font-bold">
+                        0.15%
+                    </div>
+                    <div class="text-center text-lg lg:text-xl font-semibold font-Roboto">
+                        Beli
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-blue-900 font-bold">
+                        0.25%
+                    </div>
+                    <div class="text-center text-lg lg:text-xl font-semibold font-Roboto">
+                        Jual
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-sm md:text-base my-14 px-8 sm:px-20 md:px-36 lg:px-60 xl:px-80 font-Roboto " data-aos="fade-up" data-aos-delay="400">
+                <span class="font-semibold">Keterangan:</span> Biaya di atas sudah termasuk biaya broker, BEI, KPEI, KSEI, PPN biaya broker, dan PPh.</p>
+        </div>
+
+        <img data-aos="fade-right" alt='back-element' data-aos-delay="500" class="w-112 md:w-128 mx-auto absolute -bottom-8 xl:-bottom-0 -left-72 sm:-left-96 lg:-left-48 2xl:-left-72" src="img/back-element.svg" />
+    </section>
+
+    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto relative" data-aos="fade-up" id="tanya">
+        <div class="lg:flex justify-around items-start">
+            <div class="flex flex-col w-full md:5/12 lg:4/12 justify-center sm:pl-4 items-start lg:items-center text-center my-0 md:my-10 lg:text-left mb-0">
+                <div class="w-full">
+                    <h1 class="w-full mt-12 mb-16 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-700" data-aos="fade-up">
+                        Tanya YOUTRADE
+                    </h1>
+                    <div class="bg-white z-30" x-data="{selected:1}">
+                        <ul class="shadow-box">
+                            <li class="relative border-b border-gray-200 rounded-xl shadow shadow-red-200/20 mb-2" data-aos="fade-up" data-aos-delay="100">
+                                <button type="button" class="w-full py-6 px-6 text-left" @click="selected !== 1 ? selected = 1 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-bold text-red-900 text-base md:text-lg">Apa itu YOUTRADE?</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-900 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :class="{'rotate-180' : selected == 1 }">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                          </svg>
+                                    </div>
+                                </button>
+
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="tanya1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.tanya1.scrollHeight + 'px' : ''">
+                                    <div class="px-6 pb-6 pt-0 text-left text-sm md:text-base">
+                                        YOUTRADE adalah sebuah aplikasi investasi yang bisa kamu gunakan baik melalui telepon genggam atau pun desktop. Melalui aplikasi ini kamu bisa membeli produk-produk investasi sesuai dengan profil resikomu.
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="relative border-b border-gray-200 rounded-xl shadow shadow-red-200/20 mb-2" data-aos="fade-up" data-aos-delay="200">
+                                <button type="button" class="w-full py-6 px-6 text-left" @click="selected !== 2 ? selected = 2 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-bold text-red-900 text-base md:text-lg">Kenapa berinvestasi di YOUTRADE aman?</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-900 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :class="{'rotate-180' : selected == 2 }">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                          </svg>
+                                    </div>
+                                </button>
+
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="tanya2" x-bind:style="selected == 2 ? 'max-height: ' + $refs.tanya2.scrollHeight + 'px' : ''">
+                                    <div class="px-6 pb-6 pt-0 text-left text-sm md:text-base">
+                                        YOUTRADE adalah sebuah aplikasi investasi yang bisa kamu gunakan baik melalui telepon genggam atau pun desktop. Melalui aplikasi ini kamu bisa membeli produk-produk investasi sesuai dengan profil resikomu.
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="relative border-b border-gray-200 rounded-xl shadow shadow-red-200/20 mb-2" data-aos="fade-up" data-aos-delay="300">
+                                <button type="button" class="w-full py-6 px-6 text-left" @click="selected !== 3 ? selected = 3 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-bold text-red-900 text-base md:text-lg">Bagaimana cara menjadi investor di YOUTRADE?</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-900 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :class="{'rotate-180' : selected == 3 }">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                          </svg>
+                                    </div>
+                                </button>
+
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="tanya3" x-bind:style="selected == 3 ? 'max-height: ' + $refs.tanya3.scrollHeight + 'px' : ''">
+                                    <div class="px-6 pb-6 pt-0 text-left text-sm md:text-base">
+                                        YOUTRADE adalah sebuah aplikasi investasi yang bisa kamu gunakan baik melalui telepon genggam atau pun desktop. Melalui aplikasi ini kamu bisa membeli produk-produk investasi sesuai dengan profil resikomu. Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. Labore magnam tempora aliquam at beatae possimus voluptate impedit, cumque ut id omnis, debitis quia, alias quos iure odit officiis iste animi! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident,
+                                        in sed! Praesentium labore cum perspiciatis, voluptates culpa fugit. Ipsa cumque dolore voluptatum, fugit laborum ea non dolores sint nihil fugiat?
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="md:7/12 lg:8/12 w-full relative flex items-center justify-center my-10 mr-0">
+                <img data-aos="fade-up" class="h-full" src="img/tes-tanya.png" alt="front-element" />
+                <img alt='back-element' class="z-20 w-128 md:w-256 lg:w-128 xl:w-256 absolute right-0 sm:right-36 lg:right-2 2xl:right-0" src="img/back-element.svg" />
+            </div>
+        </div>
+
+
+    </section>
+
+    <section class="max-w-screen-xl px-4 md:px-6 lg:px-8 mx-auto pt-28 pb-14 lg:pt-14 lg:pb-20 xl:pt-28 xl:pb-24 relative mb-16 md:mb-24 xl:mb-32" data-aos="fade-up">
+        <div class="bg-red-200/20 overflow-hidden rounded-xl relative">
+            <div class="mx-auto text-center flex flex-col lg:flex-row items-end mt-10">
+                <div class="flex flex-col w-full lg:w-5/12 justify-center sm:pl-12 items-baseline text-center lg:text-left my-0 pb-8 lg:pb-16 px-4 ">
+                    <div class="w-full">
+                        <h1 data-aos="fade-up" class="my-4 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-gray-700">
+                            Langkah mudah untuk <span class="text-red-900">Berinvestasi</span>
+                        </h1>
+                        <p data-aos="fade-up" data-aos-delay="100" class="mb-6 md:mb-12 text-sm md:text-base">Hanya dengan satu akun, kamu sudah bisa terhubung dengan kami baik melalui telepon genggam maupun melalui dekstop. <br>Yuk, segera daftarkan diri kamu sekarang juga!</p>
+                    </div>
+                    <div class="w-full" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-center lg:justify-start mb-0 fade-in gap-4 ">
+                            <img src="img/App Store.svg" class="h-10" alt="Donwload App Store">
+                            <img src="img/Play Store.svg" class="h-10" alt="Donwload Play Store">
+                        </div>
+                        <div class="w-full flex items-center mt-4 justify-center lg:justify-start">
+                            <div class="bg-red-900 rounded-md w-72 col-span-2 h-10 text-gray-50 text-sm flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                  </svg> Download YOU TRADE Desktop
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="flex-1 flex w-full mr-0 mb-0 ">
+                    <div class="flex justify-center top-6 h-full w-full z-20">
+                        <img data-aos="fade-up" class="h-full" src="img/laptop hp.svg" alt="front-element" />
+                    </div>
+
+                </div>
+            </div>
+            <svg class="absolute w-full bottom-0" viewBox="0 0 1300 158" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M-53.0966 110.679L-25.09 117.156C2.91665 123.634 60.2018 136.585 116.176 139.658C173.422 142.726 229.358 135.917 286.539 122.515C342.448 109.118 399.603 89.1278 455.487 69.1426C511.37 49.1574 568.525 29.1673 624.551 45.4167C681.849 61.6612 738.019 114.145 795.33 133.684C851.369 153.227 908.55 139.825 964.395 109.958C1020.24 80.0906 1077.29 33.748 1133.2 20.3509C1190.38 6.94886 1246.42 26.4924 1303.69 36.1487C1359.69 45.8101 1416.93 45.5843 1444.91 45.4739L1472.89 45.3634L1473.43 183.714L1445.45 183.824C1417.47 183.935 1360.24 184.161 1304.28 184.381C1247.04 184.607 1191.08 184.828 1133.85 185.054C1077.89 185.275 1020.65 185.5 964.694 185.721C908.732 185.942 851.499 186.168 795.538 186.389C738.305 186.615 682.343 186.835 625.11 187.061C569.149 187.282 511.916 187.508 455.954 187.729C399.993 187.95 342.76 188.175 286.799 188.396C229.566 188.622 173.604 188.843 116.371 189.069C60.4098 189.289 3.17661 189.515 -24.804 189.626L-52.7847 189.736L-53.0966 110.679Z" fill="#85141A" fill-opacity="0.05"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M1580.73 84.9343L1551.77 91.2296C1522.81 97.5249 1463.57 110.121 1405.61 113.44C1346.34 116.764 1288.34 110.812 1229.01 98.6842C1170.99 86.551 1111.63 68.242 1053.59 49.9279C995.544 31.6137 936.183 13.3047 878.274 28.9859C819.048 44.6722 761.273 94.3488 702.059 113.126C644.162 131.897 584.826 119.769 526.747 92.1836C468.667 64.598 409.209 21.5651 351.191 9.43192C291.855 -2.69609 233.958 16.0756 174.707 25.581C116.774 35.0812 57.4865 35.3151 28.5017 35.4295L-0.483231 35.5438L0.02894 165.344L29.0138 165.23C57.9987 165.116 117.286 164.882 175.256 164.653C234.543 164.419 292.513 164.19 351.8 163.956C409.77 163.727 469.058 163.494 527.027 163.265C584.997 163.036 644.284 162.802 702.254 162.573C761.542 162.339 819.511 162.111 878.799 161.877C936.769 161.648 996.056 161.414 1054.03 161.185C1112 160.957 1171.28 160.723 1229.25 160.494C1288.54 160.26 1346.51 160.031 1405.8 159.797C1463.77 159.569 1523.05 159.335 1552.04 159.22L1581.02 159.106L1580.73 84.9343Z" fill="#85141A" fill-opacity="0.05"/>
+              </svg>
+
+        </div>
+    </section>
+
+    <footer data-aos="fade-up">
+        <div class="max-w-screen-xl py-5 px-4 md:px-6 lg:py-10 lg:px-8 mx-auto relative border-t-2">
+            <div class="flex flex-wrap flex-col sm:flex-row  items-center justify-between">
+                <div class="w-full md:w-1/2 mb-4">
+                    <div class="w-full flex-shrink-0 md:mx-0 mx-auto text-center md:text-left ">
+                        <div class="flex gap-10 mb-6">
+                            <img src="img/youtrade.png" alt="Logo YOUTRADE" class="h-12">
+                            <img src="https://www.yuliesekuritas.com/assets/img/logoyulie.png" alt="Logo Yulie" class="h-12">
+                        </div>
+                        <div class="my-4 text-gray-800 text-lg font-bold text-left">PT. Yulie Sekuritas Indonesia Tbk</div>
+                        <div class="flex gap-4 mb-6 items-start justify-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 mt-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                              </svg>
+                            <div class="text-left text-sm md:text-base">
+                                <div>Plaza Mutiasa 7th Floor Suite 701</div>
+                                <p>Dr. Ide Anak Agung Gde Agung st.</p>
+                                <p>Jakarta 12950</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-4 items-start justify-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 mt-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                              </svg>
+                            <div class="flex flex-col text-sm md:text-base">
+                                <a href="tel:+622120392025">+62 21 20392025</a>
+                                <a href="tel:+622125981619">+62 21 25981619</a>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-6 items-start justify-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                              </svg>
+                            <div class="flex flex-col text-sm md:text-base">
+                                <a href="mailto:corsec@yuliesekuritas.com">corsec@yuliesekuritas.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left text-sm md:text-base">
+                    PT Yulie Sekuritas Indonesia Tbk is member of the Indonesia Stock Exchange. Licensed, registered and supervised by the Indonesia Financial Services Authority.
+                    <div class="grid grid-cols-4 md:grid-cols-2 mt-8 w-full md:w-3/4 lg:w-1/2 place-items-center justify-items-start">
+                        <img src="img/logo_BEI_2.png" class="w-20 md:w-28" alt="Indonesia Stock Exchange">
+                        <img src="img/logo_OJK_2.png" class="w-20 md:w-28" alt="Otoritas Jasa Keuangan">
+                        <img src="img/logo_KSEI_2.png" class="w-20 md:w-28" alt="Indonesia Stock Exchange">
+                        <img src="img/logo_KPEI_2.png" class="w-20 md:w-28" alt="Otoritas Jasa Keuangan">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-red-900">
+            <div class="max-w-screen-xl mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row ">
+                <p class="text-gray-50 text-sm md:text-base text-center sm:text-left">
+                    <a href="https://www.yuliesekuritas.com/" rel="noopener noreferrer" class="text-gray-50 ml-1" target="_blank">PT. Yulie Sekuritas Indonesia Tbk.</a> © 2022
+                </p>
+                <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+                <a class="text-gray-50">
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                  </svg>
+                </a>
+                <a class="ml-3 text-gray-50">
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                  </svg>
+                </a>
+                <a class="ml-3 text-gray-50">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                  </svg>
+                </a>
+                <a class="ml-3 text-gray-50">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                    <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                  </svg>
+                </a>
+              </span>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div class="flex fixed inset-x-0 bottom-0 w-full px-4 py-4 bg-slate-800 items-center justify-between text-sm text-gray-50 z-40" x-show="isMobile != null" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="transform translate-y-24"
+        x-transition:enter-end="transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="transform" x-transition:leave-end="transform translate-y-24">
+        <div class="flex gap-4 items-center">
+            <div class="w-12"><img src="img/youtrade.png" alt="Logo YOUTRADE"></div>
+            <div>
+                <div class="font-bold">You Trade</div>
+                <p>Aplikasi investasi</p>
+            </div>
+        </div>
+        <button @click="openStore()" class="bg-red-700 px-4 py-3  rounded-lg" target="_blank" rel="noopener noreferrer">Download</button>
+    </div>
+
+    <script>
+        const setup = () => {
+            return {
+                isOpen: true,
+                isMobileLayout: false,
+                showNavBg: false,
+                isMobile: null,
+                linkShow: false,
+                tempLink: null,
+                setBg() {
+                    if (!this.isMobileLayout) {
+                        this.showNavBg = (window.pageYOffset > 20) ? true : false;
+                    } else {
+                        this.showNavBg = true;
+                        if (window.pageYOffset > 50) {
+                            this.isMobile = null;
+                        } else {
+                            this.isMobile = this.tempLink;
+                        }
+                    }
+                },
+                checkScreen() {
+                    if (/android/i.test(navigator.userAgent)) {
+                        this.isMobile = "https://play.google.com/store/apps/details?id=rb.android.unotrade";
+                        this.tempLink = "https://play.google.com/store/apps/details?id=rb.android.unotrade";
+                    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                        this.isMobile = "https://apps.apple.com/id/app/unotrade/id1517185419";
+                        this.tempLink = "https://apps.apple.com/id/app/unotrade/id1517185419";
+                    }
+                },
+                watchScreen() {
+                    if (window.innerWidth <= 768) {
+                        this.isOpen = false
+                        this.isMobileLayout = true
+                        this.showNavBg = true
+                        this.checkScreen();
+                    } else {
+                        this.isOpen = true
+                        this.isMobileLayout = false
+                    }
+
+                },
+                openStore() {
+                    window.open(this.isMobile, '_blank').focus();
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

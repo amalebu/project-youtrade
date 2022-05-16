@@ -42,3 +42,21 @@
 .text-darken {
   color: #2f327d;
 }
+
+.slick-dots {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 1rem 0;
+  list-style-type: none;
+}
+.slick-dots li {
+  margin: 0 0.25rem;
+}
+.slick-dots button {
+  text-indent: -9999px;
+  @apply bg-gray-500 p-0 w-2 h-2 block border-0 rounded-full;
+}
+.slick-dots li.slick-active button {
+  @apply bg-red-800;
+}

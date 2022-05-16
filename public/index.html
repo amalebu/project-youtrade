@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
 <body class="antialiased select-none scroll-smooth debug-screens overflow-x-hidden w-screen bg-white" x-data="setup()" @load.window="watchScreen()" @resize.window="watchScreen()" @scroll.window="watchScroll()">
@@ -122,39 +123,55 @@
 
     </section>
 
-    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:px-8 mx-auto ">
+    <section class="max-w-screen-xl py-14 px-0 md:px-6 lg:px-8 mx-auto ">
 
         <h1 class="w-full flex justify-center mt-8 mb-20 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-700" data-aos="fade-up">
             Keunggulan YOU TRADE
         </h1>
 
-        <div class="grid gap-6 md:grid-cols-2 grid-cols-1 px-4">
-            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust mudah.svg"></div>
-                <div class="gap-2 text-center lg:text-left ">
-                    <div class="font-bold text-md md:text-lg">Mudah</div>
-                    <p class="text-sm md:text-base">Desain aplikasi memudahkan kamu untuk memahami produk investasi.</p>
+        <div class="main-slider overflow-x-hidden" :class="{'grid md:grid-cols-2 gap-6' : !isMobileLayout}" data-aos="fade-up">
+            <div class="p-2 md:p-0">
+                <div class="border-2 border-red-700/20 rounded-xl h-72 md:h-64 lg:h-48 gap-6 flex flex-col items-center lg:flex-row py-6 px-8">
+                    <div class="w-full md:w-32 mb-4 md:mb-0 lg:w-48 xl:w-52 flex justify-center items-center">
+                        <img class="h-32 md:h-auto md:w-full" alt="Keungulan YOUTRADE" src="img/illust mudah.svg">
+                    </div>
+                    <div class="gap-2 text-center lg:text-left ">
+                        <div class="font-bold text-md md:text-lg">Mudah</div>
+                        <p class="text-sm md:text-base">Desain aplikasi memudahkan kamu untuk memahami produk investasi.</p>
+                    </div>
                 </div>
             </div>
-            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center scale-75"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust wallet.svg"></div>
-                <div class="gap-2 text-center lg:text-left">
-                    <div class="font-bold text-md md:text-lg">Murah</div>
-                    <p class="text-sm md:text-base">Mulai dari 10 ribu rupiah, kamu sudah bisa memiliki saham.</p>
+            <div class="p-2 md:p-0">
+                <div class="border-2 border-red-700/20 rounded-xl h-72 md:h-64 lg:h-48 gap-6 flex flex-col items-center lg:flex-row py-6 px-8">
+                    <div class="w-full md:w-32 mb-4 md:mb-0 lg:w-48 xl:w-52 flex justify-center items-center">
+                        <img class="h-32 md:h-auto md:w-full md:scale-75" alt="Keungulan YOUTRADE" src="img/illust wallet.svg">
+                    </div>
+                    <div class="gap-2 text-center lg:text-left ">
+                        <div class="font-bold text-md md:text-lg">Murah</div>
+                        <p class="text-sm md:text-base">Mulai dari 10 ribu rupiah, kamu sudah bisa memiliki saham.</p>
+                    </div>
                 </div>
             </div>
-            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center "> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust notes.svg"></div>
-                <div class="gap-2 text-center lg:text-left ">
-                    <div class="font-bold text-md md:text-lg">Aman</div>
-                    <p class="text-sm md:text-base">Data pribadi dan danamu tersimpan dengan aman dan terproteksi.</p>
+            <div class="p-2 md:p-0">
+                <div class="border-2 border-red-700/20 rounded-xl h-72 md:h-64 lg:h-48 gap-6 flex flex-col items-center lg:flex-row py-6 px-8">
+                    <div class="w-full md:w-32 mb-4 md:mb-0 lg:w-48 xl:w-52 flex justify-center items-center">
+                        <img class="h-32 md:h-auto md:w-full" alt="Keungulan YOUTRADE" src="img/illust notes.svg">
+                    </div>
+                    <div class="gap-2 text-center lg:text-left ">
+                        <div class="font-bold text-md md:text-lg">Aman</div>
+                        <p class="text-sm md:text-base">Data pribadi dan danamu tersimpan dengan aman dan terproteksi.</p>
+                    </div>
                 </div>
             </div>
-            <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust comfort.svg"></div>
-                <div class="gap-2 text-center lg:text-left ">
-                    <div class="font-bold text-md md:text-lg">Nyaman</div>
-                    <p class="text-sm md:text-base">Aplikasi dalam genggaman yang bisa kamu akses 24 jam.</p>
+            <div class="p-2 md:p-0">
+                <div class="border-2 border-red-700/20 rounded-xl h-72 md:h-64 lg:h-48 gap-6 flex flex-col items-center lg:flex-row py-6 px-8">
+                    <div class="w-full md:w-32 mb-4 md:mb-0 lg:w-48 xl:w-52 flex justify-center items-center">
+                        <img class="h-32 md:h-auto md:w-full md:scale-100 scale-125" alt="Keungulan YOUTRADE" src="img/illust comfort.svg">
+                    </div>
+                    <div class="gap-2 text-center lg:text-left ">
+                        <div class="font-bold text-md md:text-lg">Nyaman</div>
+                        <p class="text-sm md:text-base">Aplikasi dalam genggaman yang bisa kamu akses 24 jam.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -327,9 +344,9 @@
                     <h1 class="w-full my-4 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-50" data-aos="fade-up">
                         Hubungi Kami
                     </h1>
-                    <p class="leading-relaxed mb-5 text-gray-50">Beritahu kami apa yang ingin kamu tau tentang YOUTRADE di sini!</p>
+                    <p class="leading-relaxed mb-5 text-gray-50" data-aos="fade-up">Beritahu kami apa yang ingin kamu tau tentang YOUTRADE di sini!</p>
                 </div>
-                <form id="formcontact" class="mx-auto w-full max-w-screen-md bg-white rounded-lg p-8 md:p-12 shadow-md">
+                <form id="formcontact" class="mx-auto w-full max-w-screen-md bg-white rounded-lg p-8 md:p-12 shadow-md" data-aos="fade-up">
                     <div class="mb-4">
                         <label for="nama" class="leading-7 font-semibold text-gray-600">Nama <span class="text-red-800">*</span></label>
                         <input type="nama" id="nama" name="nama" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -457,11 +474,10 @@
         <button @click="openStore()" class="bg-red-700 px-4 py-3  rounded-lg" target="_blank" rel="noopener noreferrer">Download</button>
     </div>
 
-    <script src="./js/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

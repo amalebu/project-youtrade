@@ -23,6 +23,7 @@ const setup = () => {
             }
         },
         watchScroll() {
+            // AOS.init();
             this.atElement = 'hero';
 
             if (this.askOffset.offsetTop - window.scrollY < 100 && window.scrollY < this.contactOffset.offsetTop - 100) {
@@ -48,6 +49,7 @@ const setup = () => {
             }
         },
         watchScreen() {
+            AOS.init();
             this.heroOffset = document.getElementById("hero");
             this.askOffset = document.getElementById("ask");
             this.contactOffset = document.getElementById("contact");
@@ -56,23 +58,21 @@ const setup = () => {
                 this.isMobileLayout = true
                 this.showNavBg = true
                 this.checkScreen();
-                tns({
-                    container: '.main-slider',
-                    items: 1,
-                    edgePadding: 15,
-                    slideBy: 'page',
+                $('.main-slider').slick({
+                    dots: true,
+                    infinite: false,
+                    arrows: false,
                     autoplay: true,
-                    loop: false,
-                    center: true,
-                    navPosition: "bottom",
-                    autoplayButton: false,
-                    autoplayButtonOutput: false,
-                    controls: false,
-                    nav: true,
+                    autoplaySpeed: 2000,
+                    centerMode: true,
+                    adaptiveHeight: false,
+                    centerPadding: '30px',
+
                 });
             } else {
                 this.isOpen = true
                 this.isMobileLayout = false
+                $('.main-slider').slick('unslick');
             }
 
         },

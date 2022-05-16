@@ -13,7 +13,7 @@
     <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
 </head>
 
-<body class="antialiased select-none scroll-smooth debug-screens overflow-x-hidden w-screen bg-white" x-data="setup()" @load.window="watchScreen()" @resize.window="watchScreen()">
+<body class="antialiased select-none scroll-smooth debug-screens overflow-x-hidden w-screen bg-white" x-data="setup()" @load.window="watchScreen()" @resize.window="watchScreen()" @scroll.window="watchScroll()">
     <!-- navbar -->
     <div class="fixed z-50 w-full" @scroll.window="setBg()" :class="{ 'bg-white shadow transition duration-100' : showNavBg }">
         <div class="flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 max-w-screen-xl">
@@ -28,12 +28,12 @@
       </button>
             </div>
             <nav x-ref="menu" x-bind:style="isOpen && isMobileLayout ? 'max-height: ' + $refs.menu.scrollHeight + 'px' : '' " :class="{'max-h-0 overflow-hidden': isMobileLayout,'mb-10' : isOpen & isMobileLayout }" class="relative transition-all  duration-500 flex-col flex-grow md:pb-0 md:justify-end md:flex-row flex">
-                <a class="px-4 py-2 mt-2 font-semibold text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200
-    md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline " href="# ">Beranda</a>
-                <a class="px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
-    md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline " href="# ">Tanya</a>
-                <a class="px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
-    md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline " href="# ">Hubungi Kami</a>
+                <button class="px-4 py-2 mt-2 text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200
+    md:mt-0 focus:text-red-700 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='hero' }" @click=goToElement(heroOffset)>Beranda</button>
+                <button class="px-4 py-2 mt-2 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
+    md:ml-4 focus:text-red-700 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='ask' }" @click=goToElement(askOffset)>Tanya</button>
+                <button class="px-4 py-2 mt-2 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
+    md:ml-4 focus:text-red-700 hover:text-red-600 focus:outline-none focus:shadow-outline " href="# ">Hubungi Kami</button>
 
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -55,9 +55,7 @@
         </div>
     </div>
 
-    <section id="hero" class=" pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
-
-
+    <section id="hero" class="min-h-screen pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
         <div class="flex flex-col w-full justify-center sm:pl-4 items-start md:items-center text-center my-0 md:my-10 lg:text-left mb-0">
             <div class="w-full">
                 <h1 data-aos="fade-right" class="my-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-700">
@@ -67,8 +65,12 @@
             </div>
             <div class="w-full mt-4">
                 <div x-show="tempLink == null" class="flex w-full justify-center lg:justify-start mb-0 fade-in gap-4" data-aos="fade-up" data-aos-delay="700">
-                    <img src="img/App Store.svg" class="h-10 sm:h-12" alt="Doanload App Store">
-                    <img src="img/Play Store.svg" class="h-10 sm:h-12" alt="Doanload Play Store">
+                    <a href="https://play.google.com/store/apps/details?id=rb.android.unotrade" target="_blank" rel="noopener noreferrer">
+                        <img src="img/App Store.svg" class="h-10 sm:h-12" alt="Doanload App Store">
+                    </a>
+                    <a href="https://apps.apple.com/id/app/unotrade/id1517185419" target="_blank" rel="noopener noreferrer">
+                        <img src="img/Play Store.svg" class="h-10 sm:h-12" alt="Doanload Play Store">
+                    </a>
                 </div>
 
                 <div class="flex w-full justify-center lg:justify-start fade-in gap-6 mb-4" data-aos="fade-up" data-aos-delay="800">
@@ -135,14 +137,14 @@
                 </div>
             </div>
             <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust wallet.svg"></div>
-                <div class="gap-2 text-center lg:text-left ">
+                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center scale-75"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust wallet.svg"></div>
+                <div class="gap-2 text-center lg:text-left">
                     <div class="font-bold text-md md:text-lg">Murah</div>
                     <p class="text-sm md:text-base">Mulai dari 10 ribu rupiah, kamu sudah bisa memiliki saham.</p>
                 </div>
             </div>
             <div class="border-2 border-red-700/20 rounded-xl gap-6 items-center flex flex-col lg:flex-row py-6 px-8" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center"> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust notes.svg"></div>
+                <div class="w-32 lg:w-48 xl:w-52 flex justify-center items-center "> <img class="w-full" alt="Keungulan YOUTRADE" src="img/illust notes.svg"></div>
                 <div class="gap-2 text-center lg:text-left ">
                     <div class="font-bold text-md md:text-lg">Aman</div>
                     <p class="text-sm md:text-base">Data pribadi dan danamu tersimpan dengan aman dan terproteksi.</p>
@@ -190,14 +192,15 @@
         <img data-aos="fade-right" alt='back-element' data-aos-delay="500" class="w-112 md:w-128 mx-auto absolute -bottom-8 xl:-bottom-0 -left-72 sm:-left-96 lg:-left-48 2xl:-left-72" src="img/back-element.svg" />
     </section>
 
-    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto relative" data-aos="fade-up" id="tanya">
+
+    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto relative" data-aos="fade-up" id="ask">
         <div class="lg:flex justify-around items-start">
             <div class="flex flex-col w-full md:5/12 lg:4/12 justify-center sm:pl-4 items-start lg:items-center text-center my-0 md:my-10 lg:text-left mb-0">
                 <div class="w-full">
-                    <h1 class="w-full mt-12 mb-16 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-700" data-aos="fade-up">
+                    <h1 class="w-full mt-12 mb-16 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-800" data-aos="fade-up">
                         Tanya YOUTRADE
                     </h1>
-                    <div class="bg-white z-30" x-data="{selected:1}">
+                    <div class="bg-white z-50" x-data="{selected:1}">
                         <ul class="shadow-box">
                             <li class="relative border-b border-gray-200 rounded-xl shadow shadow-red-200/20 mb-2" data-aos="fade-up" data-aos-delay="100">
                                 <button type="button" class="w-full py-6 px-6 text-left" @click="selected !== 1 ? selected = 1 : selected = null">
@@ -205,7 +208,7 @@
                                         <span class="font-bold text-red-900 text-base md:text-lg">Apa itu YOUTRADE?</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-900 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :class="{'rotate-180' : selected == 1 }">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                          </svg>
+                                        </svg>
                                     </div>
                                 </button>
 
@@ -221,7 +224,7 @@
                                         <span class="font-bold text-red-900 text-base md:text-lg">Kenapa berinvestasi di YOUTRADE aman?</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-900 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :class="{'rotate-180' : selected == 2 }">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                          </svg>
+                                        </svg>
                                     </div>
                                 </button>
 
@@ -238,7 +241,7 @@
                                         <span class="font-bold text-red-900 text-base md:text-lg">Bagaimana cara menjadi investor di YOUTRADE?</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-900 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" :class="{'rotate-180' : selected == 3 }">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                          </svg>
+                                        </svg>
                                     </div>
                                 </button>
 
@@ -260,8 +263,8 @@
             </div>
 
             <div class="md:7/12 lg:8/12 w-full relative flex items-center justify-center my-10 mr-0">
-                <img data-aos="fade-up" class="h-full" src="img/tes-tanya.png" alt="front-element" />
-                <img alt='back-element' class="z-20 w-128 md:w-256 lg:w-128 xl:w-256 absolute right-0 sm:right-36 lg:right-2 2xl:right-0" src="img/back-element.svg" />
+                <img data-aos="fade-up" class="h-full" src="img/female pose.svg" alt="front-element" />
+                <img alt='back-element' class="z-20 scale-125 opacity-75 rotate-90 absolute right-0 sm:right-36 lg:right-2 2xl:right-0" src="img/back-element.svg" />
             </div>
         </div>
 
@@ -278,10 +281,14 @@
                         </h1>
                         <p data-aos="fade-up" data-aos-delay="100" class="mb-6 md:mb-12 text-sm md:text-base">Hanya dengan satu akun, kamu sudah bisa terhubung dengan kami baik melalui telepon genggam maupun melalui dekstop. <br>Yuk, segera daftarkan diri kamu sekarang juga!</p>
                     </div>
-                    <div class="w-full" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-full mt-2 z-30" data-aos="fade-up" data-aos-delay="200">
                         <div class="flex items-center justify-center lg:justify-start mb-0 fade-in gap-4 ">
-                            <img src="img/App Store.svg" class="h-10" alt="Donwload App Store">
-                            <img src="img/Play Store.svg" class="h-10" alt="Donwload Play Store">
+                            <a href="https://play.google.com/store/apps/details?id=rb.android.unotrade" target="_blank" rel="noopener noreferrer">
+                                <img src="img/App Store.svg" class="h-10" alt="Doanload App Store">
+                            </a>
+                            <a href="https://apps.apple.com/id/app/unotrade/id1517185419" target="_blank" rel="noopener noreferrer">
+                                <img src="img/Play Store.svg" class="h-10" alt="Doanload Play Store">
+                            </a>
                         </div>
                         <div class="w-full flex items-center mt-4 justify-center lg:justify-start">
                             <div class="bg-red-900 rounded-md w-72 col-span-2 h-10 text-gray-50 text-sm flex items-center justify-center gap-2">

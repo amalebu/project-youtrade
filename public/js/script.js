@@ -6,6 +6,10 @@ const setup = () => {
         isMobile: null,
         linkShow: false,
         tempLink: null,
+        atElement: 'hero',
+        heroOffset: 0,
+        askOffset: 0,
+        // contactOffset: 0,
         setBg() {
             if (!this.isMobileLayout) {
                 this.showNavBg = (window.pageYOffset > 20) ? true : false;
@@ -18,6 +22,16 @@ const setup = () => {
                 }
             }
         },
+        watchScroll() {
+            this.atElement = (this.askOffset - window.scrollY < 50) ? 'ask' : 'hero';
+
+        },
+        goToElement(element) {
+            if (element !== 'heroOffset')
+                window.scrollTo({ top: element - 40, behavior: 'smooth' });
+            else
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
         checkScreen() {
             if (/android/i.test(navigator.userAgent)) {
                 this.isMobile = "https://play.google.com/store/apps/details?id=rb.android.unotrade";
@@ -28,11 +42,28 @@ const setup = () => {
             }
         },
         watchScreen() {
+            this.heroOffset = document.getElementById("hero").offsetTop;
+            this.askOffset = document.getElementById("ask").offsetTop;
+            // this.contactOffset = document.getElementById("contact").offsetTop;
             if (window.innerWidth <= 768) {
                 this.isOpen = false
                 this.isMobileLayout = true
                 this.showNavBg = true
                 this.checkScreen();
+                tns({
+                    container: '.main-slider',
+                    items: 1,
+                    edgePadding: 15,
+                    slideBy: 'page',
+                    autoplay: true,
+                    loop: false,
+                    center: true,
+                    navPosition: "bottom",
+                    autoplayButton: false,
+                    autoplayButtonOutput: false,
+                    controls: false,
+                    nav: true,
+                });
             } else {
                 this.isOpen = true
                 this.isMobileLayout = false

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="youtrade, trade, saham, pengelolaan, keuangan, yuliesekuritas, yulie, yulie sekuritas, sekuritas, bursa, bursa efek Indonesia ">
     <link rel="stylesheet" href="./css/app.css">
 
@@ -33,7 +33,7 @@
                 <button class="px-4 py-2 mt-2 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
     md:ml-4 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='ask' }" @click=goToElement(askOffset)>Tanya</button>
                 <button class="px-4 py-2 mt-2 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
-    md:ml-4 hover:text-red-600 focus:outline-none focus:shadow-outline " href="# ">Hubungi Kami</button>
+    md:ml-4 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='contact' }" @click=goToElement(contactOffset)>Hubungi Kami</button>
 
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <section id="hero" class="pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
+    <section id="hero" class="min-h-screen overflow-x-hidden pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
         <div class="flex flex-col w-full justify-center sm:pl-4 items-start md:items-center text-center my-0 md:my-10 lg:text-left mb-0">
             <div class="w-full">
                 <h1 data-aos="fade-right" class="my-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-700">
@@ -193,7 +193,7 @@
     </section>
 
 
-    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto relative" data-aos="fade-up" id="ask">
+    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto relative overflow-x-hidden" data-aos="fade-up" id="ask">
         <div class="lg:flex justify-around items-start">
             <div class="flex flex-col w-full md:5/12 lg:4/12 justify-center sm:pl-4 items-start lg:items-center text-center my-0 md:my-10 lg:text-left mb-0">
                 <div class="w-full">
@@ -313,6 +313,41 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M1580.73 84.9343L1551.77 91.2296C1522.81 97.5249 1463.57 110.121 1405.61 113.44C1346.34 116.764 1288.34 110.812 1229.01 98.6842C1170.99 86.551 1111.63 68.242 1053.59 49.9279C995.544 31.6137 936.183 13.3047 878.274 28.9859C819.048 44.6722 761.273 94.3488 702.059 113.126C644.162 131.897 584.826 119.769 526.747 92.1836C468.667 64.598 409.209 21.5651 351.191 9.43192C291.855 -2.69609 233.958 16.0756 174.707 25.581C116.774 35.0812 57.4865 35.3151 28.5017 35.4295L-0.483231 35.5438L0.02894 165.344L29.0138 165.23C57.9987 165.116 117.286 164.882 175.256 164.653C234.543 164.419 292.513 164.19 351.8 163.956C409.77 163.727 469.058 163.494 527.027 163.265C584.997 163.036 644.284 162.802 702.254 162.573C761.542 162.339 819.511 162.111 878.799 161.877C936.769 161.648 996.056 161.414 1054.03 161.185C1112 160.957 1171.28 160.723 1229.25 160.494C1288.54 160.26 1346.51 160.031 1405.8 159.797C1463.77 159.569 1523.05 159.335 1552.04 159.22L1581.02 159.106L1580.73 84.9343Z" fill="#85141A" fill-opacity="0.05"/>
               </svg>
 
+        </div>
+    </section>
+
+    <section class="max-w-screen-xl py-14 px-4 md:px-6 lg:py-28 lg:px-8 mx-auto relative" data-aos="fade-up" id="contact">
+        <div class="absolute inset-0 h-96 bg-red-800 w-full max-w-screen-xl">
+            <iframe height="100%" width="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4582.451235042609!2d106.8212911893629!3d-6.226891089848116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f358eb58aea5%3A0x7a77c9a6ff14e4c0!2sPT%20Yulie%20sekuritas%20indonesia%20Tbk!5e0!3m2!1sid!2sid!4v1592894881592!5m2!1sid!2sid"
+                style="filter: grayscale(1) contrast(1.2) opacity(0.25);"></iframe>
+        </div>
+        <div class="px-0 md:px-5 pb-24 justify-center flex items-center">
+            <div class="flex flex-col mt-10 md:mt-0 relative z-10  w-full">
+                <div class="text-center mb-6">
+                    <h1 class="w-full my-4 text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-gray-50" data-aos="fade-up">
+                        Hubungi Kami
+                    </h1>
+                    <p class="leading-relaxed mb-5 text-gray-50">Beritahu kami apa yang ingin kamu tau tentang YOUTRADE di sini!</p>
+                </div>
+                <form id="formcontact" class="mx-auto w-full max-w-screen-md bg-white rounded-lg p-8 md:p-12 shadow-md">
+                    <div class="mb-4">
+                        <label for="nama" class="leading-7 font-semibold text-gray-600">Nama <span class="text-red-800">*</span></label>
+                        <input type="nama" id="nama" name="nama" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="leading-7 font-semibold text-gray-600">Email <span class="text-red-800">*</span></label>
+                        <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="leading-7 font-semibold text-gray-600">Tulis pesan kamu</label>
+                        <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button class="bg-red-900 rounded-md w-72 col-span-2 h-10 text-gray-50 gap-2">Kirim</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </section>
 

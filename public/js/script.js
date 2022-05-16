@@ -9,7 +9,7 @@ const setup = () => {
         atElement: 'hero',
         heroOffset: 0,
         askOffset: 0,
-        // contactOffset: 0,
+        contactOffset: 0,
         setBg() {
             if (!this.isMobileLayout) {
                 this.showNavBg = (window.pageYOffset > 20) ? true : false;
@@ -23,12 +23,18 @@ const setup = () => {
             }
         },
         watchScroll() {
-            this.atElement = (this.askOffset - window.scrollY < 50) ? 'ask' : 'hero';
+            this.atElement = 'hero';
 
+            if (this.askOffset.offsetTop - window.scrollY < 100 && window.scrollY < this.contactOffset.offsetTop - 100) {
+                this.atElement = 'ask'
+            };
+            if (this.contactOffset.offsetTop - window.scrollY < 100) {
+                this.atElement = 'contact'
+            };
         },
         goToElement(element) {
             if (element !== 'heroOffset')
-                window.scrollTo({ top: element - 40, behavior: 'smooth' });
+                window.scrollTo({ top: element.offsetTop - 40, behavior: 'smooth' });
             else
                 window.scrollTo({ top: 0, behavior: 'smooth' });
         },
@@ -42,9 +48,9 @@ const setup = () => {
             }
         },
         watchScreen() {
-            this.heroOffset = document.getElementById("hero").offsetTop;
-            this.askOffset = document.getElementById("ask").offsetTop;
-            // this.contactOffset = document.getElementById("contact").offsetTop;
+            this.heroOffset = document.getElementById("hero");
+            this.askOffset = document.getElementById("ask");
+            this.contactOffset = document.getElementById("contact");
             if (window.innerWidth <= 768) {
                 this.isOpen = false
                 this.isMobileLayout = true

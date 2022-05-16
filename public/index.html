@@ -29,11 +29,11 @@
             </div>
             <nav x-ref="menu" x-bind:style="isOpen && isMobileLayout ? 'max-height: ' + $refs.menu.scrollHeight + 'px' : '' " :class="{'max-h-0 overflow-hidden': isMobileLayout,'mb-10' : isOpen & isMobileLayout }" class="relative transition-all  duration-500 flex-col flex-grow md:pb-0 md:justify-end md:flex-row flex">
                 <button class="px-4 py-2 mt-2 text-gray-900 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200
-    md:mt-0 focus:text-red-700 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='hero' }" @click=goToElement(heroOffset)>Beranda</button>
+    md:mt-0 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='hero' }" @click=goToElement(heroOffset)>Beranda</button>
                 <button class="px-4 py-2 mt-2 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
-    md:ml-4 focus:text-red-700 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='ask' }" @click=goToElement(askOffset)>Tanya</button>
+    md:ml-4 hover:text-red-600 focus:outline-none focus:shadow-outline " :class="{ 'text-red-700 font-bold' : atElement==='ask' }" @click=goToElement(askOffset)>Tanya</button>
                 <button class="px-4 py-2 mt-2 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0
-    md:ml-4 focus:text-red-700 hover:text-red-600 focus:outline-none focus:shadow-outline " href="# ">Hubungi Kami</button>
+    md:ml-4 hover:text-red-600 focus:outline-none focus:shadow-outline " href="# ">Hubungi Kami</button>
 
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <section id="hero" class="min-h-screen pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
+    <section id="hero" class="pt-28 pb-14 sm:pt-38 max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-center">
         <div class="flex flex-col w-full justify-center sm:pl-4 items-start md:items-center text-center my-0 md:my-10 lg:text-left mb-0">
             <div class="w-full">
                 <h1 data-aos="fade-right" class="my-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-700">
@@ -359,10 +359,18 @@
                 <div class="w-full md:w-1/2 text-left text-sm md:text-base">
                     PT Yulie Sekuritas Indonesia Tbk is member of the Indonesia Stock Exchange. Licensed, registered and supervised by the Indonesia Financial Services Authority.
                     <div class="grid grid-cols-4 md:grid-cols-2 mt-8 w-full md:w-3/4 lg:w-1/2 place-items-center justify-items-start">
-                        <img src="img/logo_BEI_2.png" class="w-20 md:w-28" alt="Indonesia Stock Exchange">
-                        <img src="img/logo_OJK_2.png" class="w-20 md:w-28" alt="Otoritas Jasa Keuangan">
-                        <img src="img/logo_KSEI_2.png" class="w-20 md:w-28" alt="Indonesia Stock Exchange">
-                        <img src="img/logo_KPEI_2.png" class="w-20 md:w-28" alt="Otoritas Jasa Keuangan">
+                        <a href="https://www.idx.co.id/" target="_blank" rel="noopener noreferrer" alt="Bursa Efek Indonesia">
+                            <img src="img/logo_BEI_2.png" class="w-20 md:w-28" alt="Indonesia Stock Exchange">
+                        </a>
+                        <a href="https://ojk.go.id/id/Default.aspx" target="_blank" rel="noopener noreferrer" alt="Bursa Efek Indonesia">
+                            <img src="img/logo_OJK_2.png" class="w-20 md:w-28" alt="Otoritas Jasa Keuangan">
+                        </a>
+                        <a href="https://www.ksei.co.id/" target="_blank" rel="noopener noreferrer" alt="Bursa Efek Indonesia">
+                            <img src="img/logo_KSEI_2.png" class="w-20 md:w-28" alt="Indonesia Stock Exchange">
+                        </a>
+                        <a href="https://www.kpei.co.id/" target="_blank" rel="noopener noreferrer" alt="Bursa Efek Indonesia">
+                            <img src="img/logo_KPEI_2.png" class="w-20 md:w-28" alt="Otoritas Jasa Keuangan">
+                        </a>
                     </div>
                 </div>
             </div>
